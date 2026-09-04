@@ -14,7 +14,12 @@ export function split(amount, people) {
   }
   const cents = Math.round(amount * 100);
   const share = Math.floor(cents / people);
-  return Array.from({ length: people }, () => share / 100);
+  // The remainder cents go to the earliest people so the shares sum to the
+  // amount; dropping them silently loses money from the total.
+  const remainder = cents - share * people;
+  return Array.from({ length: people }, (_, i) =>
+    (share + (i < remainder ? 1 : 0)) / 100,
+  );
 }
 
 /** Format a dollar value for display. */
