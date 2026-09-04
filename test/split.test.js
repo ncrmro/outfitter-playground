@@ -20,16 +20,14 @@ test("distributes remainder cents so shares sum to the amount", () => {
 
 test("shares always sum to the amount", () => {
   const cases = [
-    [100, 3],
-    [0.01, 3],
-    [89.97, 7],
-    [0.05, 4],
-    [19.99, 6],
+    [100, 3, [33.34, 33.33, 33.33]],
+    [0.01, 3, [0.01, 0, 0]],
+    [89.97, 7, [12.86, 12.86, 12.85, 12.85, 12.85, 12.85, 12.85]],
+    [0.05, 4, [0.02, 0.01, 0.01, 0.01]],
+    [19.99, 6, [3.34, 3.33, 3.33, 3.33, 3.33, 3.33]],
   ];
-  for (const [amount, people] of cases) {
-    const shares = split(amount, people);
-    const totalCents = shares.reduce((sum, s) => sum + Math.round(s * 100), 0);
-    assert.equal(totalCents, Math.round(amount * 100), `${amount} / ${people}`);
+  for (const [amount, people, expected] of cases) {
+    assert.deepEqual(split(amount, people), expected, `${amount} / ${people}`);
   }
 });
 

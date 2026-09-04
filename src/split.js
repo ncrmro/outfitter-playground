@@ -1,5 +1,9 @@
 /**
- * Split an amount of money evenly among a number of people.
+ * Split an amount of money among a number of people.
+ *
+ * The shares always sum to the amount. When the cents do not divide
+ * evenly, the first shares are one cent larger, so no two shares differ
+ * by more than one cent.
  *
  * @param {number} amount - total to split, in dollars (e.g. 100 or 89.97)
  * @param {number} people - how many people share the bill
