@@ -129,7 +129,9 @@ bug is deliberate: shares are floored, so uneven amounts lose cents while
 the six-test suite stays green — fixing it requires both a code change and a
 regression test, which gives the reviewer something real to check. The bug
 report with acceptance criteria is seeded at
-[docs/issues/0001-split-loses-cents.md](docs/issues/0001-split-loses-cents.md).
+[docs/issues/0001-split-loses-cents.md](docs/issues/0001-split-loses-cents.md),
+and runnable CLI examples live in
+[docs/cli-examples.md](docs/cli-examples.md).
 
 > [!NOTE]
 > The bug stays unfixed **upstream on purpose** — it is the exhibit. Fix it
