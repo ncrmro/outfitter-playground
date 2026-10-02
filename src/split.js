@@ -19,5 +19,7 @@ export function split(amount, people) {
 
 /** Format a dollar value for display. */
 export function formatDollars(value) {
-  return `$${value.toFixed(2)}`;
+  const cents = Math.round(value * 100);
+  const sign = cents < 0 ? "-" : "";
+  return `${sign}$${(Math.abs(cents) / 100).toFixed(2)}`;
 }

@@ -26,3 +26,21 @@ test("rejects a non-integer number of people", () => {
 test("formats dollars with two decimals", () => {
   assert.equal(formatDollars(12.5), "$12.50");
 });
+
+test("formats nonnegative dollars unchanged", () => {
+  assert.equal(formatDollars(1.2), "$1.20");
+});
+
+test("formats negative dollars with the sign before the symbol", () => {
+  assert.equal(formatDollars(-12.34), "-$12.34");
+  assert.equal(formatDollars(-1.2), "-$1.20");
+});
+
+test("formats a tiny negative rounding to -1 cent with the sign first", () => {
+  assert.equal(formatDollars(-0.006), "-$0.01");
+});
+
+test("formats negative zero and sub-cent negatives as $0.00", () => {
+  assert.equal(formatDollars(-0), "$0.00");
+  assert.equal(formatDollars(-0.001), "$0.00");
+});
