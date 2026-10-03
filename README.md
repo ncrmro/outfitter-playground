@@ -124,11 +124,13 @@ to pin, sync, and verify it.
 
 ## The exhibit
 
-`split` is a zero-dependency Node CLI that splits a bill among people. Its
-bug is deliberate: shares are floored, so uneven amounts lose cents while
-the six-test suite stays green — fixing it requires both a code change and a
-regression test, which gives the reviewer something real to check. The bug
-report with acceptance criteria is seeded at
+`split` is a zero-dependency Node CLI that splits a bill among people
+(`node bin/split.js <amount> <people>`; `node bin/split.js --version` or
+`-v` prints the version from package.json). Its bug is deliberate: shares
+are floored, so uneven amounts lose cents while the test suite stays
+green — fixing it requires both a code change and a regression test, which
+gives the reviewer something real to check. The bug report with acceptance
+criteria is seeded at
 [docs/issues/0001-split-loses-cents.md](docs/issues/0001-split-loses-cents.md).
 
 > [!NOTE]

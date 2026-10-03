@@ -1,7 +1,20 @@
 #!/usr/bin/env node
+import { readFileSync } from "node:fs";
 import { split, formatDollars } from "../src/split.js";
 
-const [amountArg, peopleArg] = process.argv.slice(2);
+function versionFromPackageMetadata() {
+  return JSON.parse(
+    readFileSync(new URL("../package.json", import.meta.url), "utf8"),
+  ).version;
+}
+
+const args = process.argv.slice(2);
+if (args.length === 1 && (args[0] === "--version" || args[0] === "-v")) {
+  console.log(versionFromPackageMetadata());
+  process.exit(0);
+}
+
+const [amountArg, peopleArg] = args;
 if (amountArg === undefined || peopleArg === undefined) {
   console.error("usage: split <amount> <people>");
   console.error("example: split 89.97 3");
